@@ -21,10 +21,29 @@ const createUser = async ({ username, password }) => {
 };
 
 // Get user function, verify password
-const getUser = async (username, password) => {};
+const getUser = async (username, password) => {
+  try {
+  } catch (error) {}
+};
 
 // select user by id and return user object, not password though
-const getUserById = async (id) => {};
+const getUserById = async (userId) => {
+  try {
+    const {
+      rows: [user],
+    } = await client.query(`
+            SELECT id, username
+            FROM users
+            WHERE id=${userId}
+          `);
+    if (!user) {
+      return null;
+    }
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
 
 // select user by username and return user object
 const getUserByUsername = async (username) => {
@@ -48,4 +67,6 @@ const getUserByUsername = async (username) => {
 
 module.exports = {
   createUser,
+  getUserById,
+  getUserByUsername,
 };
