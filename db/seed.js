@@ -1,6 +1,10 @@
 const { client } = require("./client");
 
-const { createUser } = require("./adapters/users");
+const {
+  createUser,
+  getUserById,
+  getUserByUsername,
+} = require("./adapters/users");
 
 // drop tables
 async function dropTables() {
@@ -103,10 +107,19 @@ async function testDB() {
     // connect the client to the database, finally
 
     // queries are promises, so we can await them
-    const result = await client.query(`SELECT * FROM users;`);
+    console.log("Starting to test database...");
+
+    console.log("Calling getUserById with 1");
+    const albert = await getUserById(1);
+    console.log("Result:", albert);
+
+    console.log("Calling getUserByUsername with albert");
+    const userByUsernameResult = await getUserByUsername("albert");
+    console.log("Result:", userByUsernameResult);
+
+    console.log("Finished database tests!");
 
     // for now, logging is a fine way to see what's up
-    console.log(result);
   } catch (error) {
     console.error(error);
   }
