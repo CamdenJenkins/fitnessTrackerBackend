@@ -1,7 +1,7 @@
-const { client } = require("client.js");
+const { client } = require("../client");
 
 // function to add a new user to the database
-const createUser = async (username, password) => {
+const createUser = async ({ username, password }) => {
   try {
     const {
       rows: [user],
@@ -44,4 +44,8 @@ const getUserByUsername = async (username) => {
   } catch (error) {
     throw error;
   }
+};
+
+module.exports = {
+  createUser,
 };
