@@ -1,16 +1,13 @@
 const users = [
   {
-    id: 1,
     username: "albert",
     password: "bertie99",
   },
   {
-    id: 2,
     username: "sandra",
     password: "2sandyme",
   },
   {
-    id: 3,
     username: "glamgal",
     password: "soglam",
   },
@@ -18,21 +15,18 @@ const users = [
 
 const routines = [
   {
-    id: 1,
     creator_id: 1,
     is_public: true,
     name: "Leg Day",
     goal: "Huge Quads!",
   },
   {
-    id: 2,
     creator_id: 2,
     is_public: true,
     name: "Arms",
     goal: "Big Biceps",
   },
   {
-    id: 3,
     creator_id: 3,
     is_public: true,
     name: "Chest",
@@ -42,19 +36,51 @@ const routines = [
 
 const activities = [
   {
-    id: 1,
     name: "Squats",
     description: "Bascially like sitting",
   },
   {
-    id: 2,
     name: "Leg Press",
     description: "Push Hard",
   },
   {
-    id: 3,
     name: "Bicep curls",
     description: "curl your arm",
   },
+  {
+    name: "Bench Press",
+    description: "push with arms",
+  },
 ];
-module.exports = { users, activities, routines };
+
+const routine_activities = [
+  {
+    routine_id: 1,
+    activity_id: 1,
+    duration: 10,
+    count: 30,
+  },
+
+  {
+    routine_id: 1,
+    activity_id: 2,
+    duration: 20,
+    count: 50,
+  },
+
+  {
+    routine_id: 2,
+    activity_id: 3,
+    duration: 5,
+    count: 20,
+  },
+
+  {
+    routine_id: 3,
+    activity_id: 4,
+    duration: 15,
+    count: 25,
+  },
+];
+
+module.exports = { users, activities, routines, routine_activities };

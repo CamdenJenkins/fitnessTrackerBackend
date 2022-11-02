@@ -1,7 +1,13 @@
 const { client } = require("./client");
-const { users, activities, routines } = require("./seedData");
+const {
+  users,
+  activities,
+  routines,
+  routine_activities,
+} = require("./seedData");
 const { createRoutine } = require("./adapters/routines");
 const { createActivities } = require("./adapters/activities");
+const { addActivityToRoutine } = require("./adapters/routine_activites");
 
 const {
   createUser,
@@ -53,10 +59,11 @@ const createTables = async () => {
     );
     CREATE TABLE routine_activities (
         id SERIAL PRIMARY KEY,
-        routine_id	INTEGER UNIQUE REFERENCES routines (id),
-        activity_id	INTEGER UNIQUE REFERENCES activities (id),
+        routine_id	INTEGER REFERENCES routines (id),
+        activity_id	INTEGER REFERENCES activities (id),
         duration INTEGER,	
-        count INTEGER
+        count INTEGER,
+        UNIQUE (routine_id, activity_id)
     );
 `
     );
@@ -103,6 +110,10 @@ const seedDb = async () => {
   console.log(`...seeding activities`);
   for (const activity of activities) {
     await createActivities(activity);
+  }
+  console.log("...seeding ra");
+  for (const ra of routine_activities) {
+    await addActivityToRoutine(ra);
   }
 };
 
