@@ -1,4 +1,7 @@
 const { client } = require("./client");
+const { users, activities, routines } = require("./seedData");
+const { createRoutine } = require("./adapters/routines");
+const { createActivities } = require("./adapters/activities");
 
 const {
   createUser,
@@ -64,30 +67,44 @@ const createTables = async () => {
   }
 };
 
-async function createInitialUsers() {
-  try {
-    console.log("Starting to create users...");
+// async function createInitialUsers() {
+//   try {
+//     console.log("Starting to create users...");
 
-    const albert = await createUser({
-      username: "albert",
-      password: "bertie99",
-    });
+//     const albert = await createUser({
+//       username: "albert",
+//       password: "bertie99",
+//     });
 
-    const sandra = await createUser({
-      username: "sandra",
-      password: "2sandy4me",
-    });
-    const glamgal = await createUser({
-      username: "glamgal",
-      password: "soglam",
-    });
+//     const sandra = await createUser({
+//       username: "sandra",
+//       password: "2sandy4me",
+//     });
+//     const glamgal = await createUser({
+//       username: "glamgal",
+//       password: "soglam",
+//     });
 
-    console.log("Finished creating users!");
-  } catch (error) {
-    console.error("Error creating users!");
-    throw error;
+//     console.log("Finished creating users!");
+//   } catch (error) {
+//     console.error("Error creating users!");
+//     throw error;
+//   }
+// }
+const seedDb = async () => {
+  console.log(`...seeding users`);
+  for (const user of users) {
+    await createUser(user);
   }
-}
+  console.log(`...seeding routines`);
+  for (const routine of routines) {
+    await createRoutine(routine);
+  }
+  console.log(`...seeding activities`);
+  for (const activity of activities) {
+    await createActivities(activity);
+  }
+};
 
 const rebuildDB = async () => {
   try {
@@ -95,7 +112,7 @@ const rebuildDB = async () => {
 
     await dropTables();
     await createTables();
-    await createInitialUsers();
+    await seedDb();
   } catch (error) {
     console.log("Error during rebuildDB");
     throw error;
