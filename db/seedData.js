@@ -22,7 +22,7 @@ const routines = [
   },
   {
     creator_id: 2,
-    is_public: true,
+    is_public: false,
     name: "Arms",
     goal: "Big Biceps",
   },
@@ -31,6 +31,12 @@ const routines = [
     is_public: true,
     name: "Chest",
     goal: "Big Pecs!",
+  },
+  {
+    creator_id: 1,
+    is_public: false,
+    name: "Back Day",
+    goal: "Huge Lats!",
   },
 ];
 

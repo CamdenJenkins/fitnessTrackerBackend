@@ -5,7 +5,16 @@ const {
   routines,
   routine_activities,
 } = require("./seedData");
-const { createRoutine } = require("./adapters/routines");
+const {
+  createRoutine,
+  getAllRoutines,
+  getRoutineById,
+  getRoutinesWithoutActivities,
+  getAllPublicRoutines,
+  getAllRoutinesByUser,
+  getPublicRoutinesByUser,
+  getPublicRoutinesByActivity,
+} = require("./adapters/routines");
 const { createActivities } = require("./adapters/activities");
 const { addActivityToRoutine } = require("./adapters/routine_activites");
 
@@ -144,6 +153,34 @@ async function testDB() {
     console.log("Calling getUserByUsername with albert");
     const userByUsernameResult = await getUserByUsername("albert");
     console.log("Result:", userByUsernameResult);
+
+    console.log("Calling getAllRoutines");
+    const getAllRoutinesResult = await getAllRoutines();
+    console.log("Result:", getAllRoutinesResult);
+
+    console.log("Calling getRoutinebyId");
+    const routineById = await getRoutineById(1);
+    console.log("Result:", routineById);
+
+    console.log("Calling getRoutinesWithoutActivities");
+    const routinesWithoutActivities = await getRoutinesWithoutActivities();
+    console.log("Result:", routinesWithoutActivities);
+
+    console.log("Calling getAllPublicRoutines");
+    const publicRoutines = await getAllPublicRoutines();
+    console.log("Result:", publicRoutines);
+
+    console.log("Calling getAllRoutinesByUser ");
+    const routinesByUser = await getAllRoutinesByUser("albert");
+    console.log("Result:", routinesByUser);
+
+    console.log("Calling getPublicRoutinesByUser");
+    const publicRoutinesByUser = await getPublicRoutinesByUser("albert");
+    console.log("Result:", publicRoutinesByUser);
+
+    console.log("Calling getPublicRoutinesByActivity");
+    const publicRoutinesByActivity = await getPublicRoutinesByActivity(1);
+    console.log("Result:", publicRoutinesByActivity);
 
     console.log("Finished database tests!");
 
