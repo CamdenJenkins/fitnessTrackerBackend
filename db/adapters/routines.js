@@ -19,10 +19,34 @@ const getAllRoutinesByUser = async (username) => {};
 const getPublicRoutinesByActivity = async (activityId) => {};
 
 // Create and return a new routine
-const createRoutine = async (creatorId, isPublic, name, goal) => {};
+const createRoutine = async ({ creator_id, is_public, name, goal }) => {
+  try {
+    const {
+      rows: [routine],
+    } = await client.query(
+      `
+            INSERT INTO routines(creator_id, is_public, name, goal)
+            VALUES($1, $2, $3, $4)
+            RETURNING *;
+            `,
+      [creator_id, is_public, name, goal]
+    );
+    return routine;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Get user function, verify password
+const getUser = async (username, password) => {
+  try {
+  } catch (error) {}
+};
 
 // Find routine by id and update either isPublic, name, or goal
 const updateRoutine = async (routineId, isPublic, name, goal) => {};
 
 // Remove routine from database, delete all routine_activities associated
 const destroyRoutine = async (routineId) => {};
+
+module.exports = { createRoutine };
