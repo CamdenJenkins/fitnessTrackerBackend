@@ -17,4 +17,32 @@ const createActivities = async ({ name, description }) => {
   }
 };
 
-module.exports = { createActivities };
+const getActivityById = async (activityId) => {
+  try {
+    const {
+      rows: [activity],
+    } = await client.query(
+      `select * 
+            FROM activities
+            WHERE activities.id = ${activityId} `
+    );
+
+    if (!activity) {
+      return null;
+    }
+    return activity;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getAllActivities = async () => {
+  try {
+    const { rows } = await client.query(`select * FROM activities`);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { createActivities, getActivityById, getAllActivities };

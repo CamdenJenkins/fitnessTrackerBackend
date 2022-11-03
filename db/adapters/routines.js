@@ -245,10 +245,44 @@ const createRoutine = async ({ creator_id, is_public, name, goal }) => {
 };
 
 // Find routine by id and update either isPublic, name, or goal
-const updateRoutine = async (routineId, isPublic, name, goal) => {};
+const updateRoutine = async (routineId, fields = {}) => {
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(", ");
+  if (setString.length === 0) {
+    return;
+  }
+  try {
+    const result = await client.query(
+      `
+        UPDATE routines
+        SET ${setString}
+        WHERE routines.id = ${routineId}
+        RETURNING *;
+        `,
+      Object.values(fields)
+    );
+    return getRoutineById(routineId);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const destroyRoutine = async (routineId) => {
+  try {
+    const {
+      rows: [deletedRoutine],
+    } = await client.query(
+      ` DELETE routines WHERE routines.id = ${routineId}`,
+      [routineId]
+    );
+    return deletedRoutine;
+  } catch (error) {
+    throw error;
+  }
+};
 
 // Remove routine from database, delete all routine_activities associated
-const destroyRoutine = async (routineId) => {};
 
 module.exports = {
   createRoutine,
@@ -259,4 +293,6 @@ module.exports = {
   getAllRoutinesByUser,
   getPublicRoutinesByUser,
   getPublicRoutinesByActivity,
+  updateRoutine,
+  destroyRoutine,
 };

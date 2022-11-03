@@ -14,9 +14,19 @@ const {
   getAllRoutinesByUser,
   getPublicRoutinesByUser,
   getPublicRoutinesByActivity,
+  updateRoutine,
+  destroyRoutine,
 } = require("./adapters/routines");
-const { createActivities } = require("./adapters/activities");
-const { addActivityToRoutine } = require("./adapters/routine_activites");
+const {
+  createActivities,
+  getActivityById,
+  getAllActivities,
+} = require("./adapters/activities");
+const {
+  addActivityToRoutine,
+  getRoutineActivityById,
+  getRoutineActiviitiesByRoutine,
+} = require("./adapters/routine_activites");
 
 const {
   createUser,
@@ -181,6 +191,34 @@ async function testDB() {
     console.log("Calling getPublicRoutinesByActivity");
     const publicRoutinesByActivity = await getPublicRoutinesByActivity(1);
     console.log("Result:", publicRoutinesByActivity);
+
+    console.log("Calling getActivityById");
+    const activityById = await getActivityById(1);
+    console.log("Result:", activityById);
+
+    console.log("Calling getAllActivities");
+    const allActivities = await getAllActivities();
+    console.log("Result:", allActivities);
+
+    console.log("Calling getRoutineActivityById");
+    const routineActivityById = await getRoutineActivityById(1);
+    console.log("Result:", routineActivityById);
+
+    console.log("Calling getRoutineActivitiesByRoutine");
+    const routineActivitiesByRoutine = await getRoutineActiviitiesByRoutine(1);
+    console.log("Result:", routineActivitiesByRoutine);
+
+    console.log("Calling updateRoutine");
+    const updateRoutineResult = await updateRoutine(1, {
+      is_public: false,
+      name: "Calves Only",
+      goal: "Big Calves",
+    });
+    console.log("Result:", updateRoutineResult);
+
+    console.log("Calling destroyRoutine");
+    const destroyRoutineResult = await destroyRoutine(1);
+    console.log("Result:", destroyRoutineResult);
 
     console.log("Finished database tests!");
 
