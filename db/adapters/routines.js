@@ -1,4 +1,5 @@
 const { client } = require("../client");
+const { destroyRoutineActivityByRoutineId } = require("./routine_activites");
 
 // Uses a join to get routine that matches id and all macthing activities
 const getRoutineById = async (id) => {
@@ -270,11 +271,13 @@ const updateRoutine = async (routineId, fields = {}) => {
 
 const destroyRoutine = async (routineId) => {
   try {
+    destroyRoutineActivityByRoutineId(routineId);
     const {
       rows: [deletedRoutine],
     } = await client.query(
-      ` DELETE routines WHERE routines.id = ${routineId}`,
-      [routineId]
+      ` DELETE FROM routines 
+        WHERE routines.id = ${routineId}
+        RETURNING *;`
     );
     return deletedRoutine;
   } catch (error) {

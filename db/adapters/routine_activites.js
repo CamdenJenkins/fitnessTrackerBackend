@@ -51,8 +51,68 @@ const getRoutineActiviitiesByRoutine = async (routineId) => {
   }
 };
 
+const destroyRoutineActivity = async (id) => {
+  try {
+    const {
+      rows: [deletedRa],
+    } = await client.query(
+      `
+      DELETE FROM routine_activities
+      WHERE routine_activities.id = ${id}
+      RETURNING *;
+      `
+    );
+    return deletedRa;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const destroyRoutineActivityByRoutineId = async (id) => {
+  try {
+    const {
+      rows: [deletedRa],
+    } = await client.query(
+      `
+      DELETE FROM routine_activities
+      WHERE routine_id = ${id}
+      RETURNING *;
+      `
+    );
+    return deletedRa;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const updateRoutineActivity = async (raId, fields = {}) => {
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(", ");
+  if (setString.length === 0) {
+    return;
+  }
+  try {
+    const result = await client.query(
+      `
+        UPDATE routine_activities
+        SET ${setString}
+        WHERE routine_activities.id = ${raId}
+        RETURNING *;
+        `,
+      Object.values(fields)
+    );
+    return getRoutineActivityById(raId);
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   addActivityToRoutine,
   getRoutineActivityById,
   getRoutineActiviitiesByRoutine,
+  destroyRoutineActivity,
+  destroyRoutineActivityByRoutineId,
+  updateRoutineActivity,
 };
