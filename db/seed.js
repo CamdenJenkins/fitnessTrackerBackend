@@ -21,11 +21,14 @@ const {
   createActivities,
   getActivityById,
   getAllActivities,
+  updateActivity,
 } = require("./adapters/activities");
 const {
   addActivityToRoutine,
   getRoutineActivityById,
   getRoutineActiviitiesByRoutine,
+  destroyRoutineActivity,
+  updateRoutineActivity,
 } = require("./adapters/routine_activites");
 
 const {
@@ -219,6 +222,24 @@ async function testDB() {
     console.log("Calling destroyRoutine");
     const destroyRoutineResult = await destroyRoutine(1);
     console.log("Result:", destroyRoutineResult);
+
+    console.log("Calling destroyRoutineActivity");
+    const destroyRoutineActivityResult = await destroyRoutineActivity(3);
+    console.log("Result:", destroyRoutineActivityResult);
+
+    console.log("Calling updateActivity");
+    const updatedActivity = await updateActivity(1, {
+      name: "pushups",
+      description: "push off the ground",
+    });
+    console.log("Result:", updatedActivity);
+
+    console.log("Calling updateRoutineActivity");
+    const updatedRoutineActivity = await updateRoutineActivity(4, {
+      duration: 5,
+      count: 5,
+    });
+    console.log("Result:", updatedRoutineActivity);
 
     console.log("Finished database tests!");
 

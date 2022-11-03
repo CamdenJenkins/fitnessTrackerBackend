@@ -45,4 +45,32 @@ const getAllActivities = async () => {
   }
 };
 
-module.exports = { createActivities, getActivityById, getAllActivities };
+const updateActivity = async (activityId, fields = {}) => {
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(", ");
+  if (setString.length === 0) {
+    return;
+  }
+  try {
+    const result = await client.query(
+      `
+        UPDATE activities
+        SET ${setString}
+        WHERE activities.id = ${activityId}
+        RETURNING *;
+        `,
+      Object.values(fields)
+    );
+    return getActivityById(activityId);
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = {
+  createActivities,
+  getActivityById,
+  getAllActivities,
+  updateActivity,
+};
