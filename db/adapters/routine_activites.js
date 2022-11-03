@@ -23,4 +23,36 @@ const addActivityToRoutine = async ({
   }
 };
 
-module.exports = { addActivityToRoutine };
+const getRoutineActivityById = async (routineActivityId) => {
+  try {
+    const {
+      rows: [ra],
+    } = await client.query(
+      `select * 
+      FROM routine_activities
+      WHERE routine_activities.id = ${routineActivityId}`
+    );
+    return ra;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getRoutineActiviitiesByRoutine = async (routineId) => {
+  try {
+    const { rows } = await client.query(
+      `select * 
+      FROM routine_activities
+      WHERE routine_id=${routineId}`
+    );
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = {
+  addActivityToRoutine,
+  getRoutineActivityById,
+  getRoutineActiviitiesByRoutine,
+};
