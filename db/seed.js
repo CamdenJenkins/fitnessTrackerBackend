@@ -213,19 +213,19 @@ async function testDB() {
 
     console.log("Calling updateRoutine");
     const updateRoutineResult = await updateRoutine(1, {
-      is_public: false,
+      is_public: true,
       name: "Calves Only",
       goal: "Big Calves",
     });
     console.log("Result:", updateRoutineResult);
 
-    console.log("Calling destroyRoutine");
-    const destroyRoutineResult = await destroyRoutine(1);
-    console.log("Result:", destroyRoutineResult);
+    // console.log("Calling destroyRoutine");
+    // const destroyRoutineResult = await destroyRoutine(1);
+    // console.log("Result:", destroyRoutineResult);
 
-    console.log("Calling destroyRoutineActivity");
-    const destroyRoutineActivityResult = await destroyRoutineActivity(3);
-    console.log("Result:", destroyRoutineActivityResult);
+    // console.log("Calling destroyRoutineActivity");
+    // const destroyRoutineActivityResult = await destroyRoutineActivity(3);
+    // console.log("Result:", destroyRoutineActivityResult);
 
     console.log("Calling updateActivity");
     const updatedActivity = await updateActivity(1, {

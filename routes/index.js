@@ -1,8 +1,11 @@
 const express = require("express");
 const apiRouter = express.Router();
-
 const healthRouter = require("./health");
 const usersRouter = require("./users");
+const routinesRouter = require("./routines");
+const activitiesRouter = require("./activities");
 apiRouter.use("/health", healthRouter);
 apiRouter.use("/users", usersRouter);
+apiRouter.use("/routines", routinesRouter);
+apiRouter.use("/activities", activitiesRouter);
 module.exports = apiRouter;
