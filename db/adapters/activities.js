@@ -38,7 +38,9 @@ const getActivityById = async (activityId) => {
 
 const getAllActivities = async () => {
   try {
-    const { rows } = await client.query(`select * FROM activities`);
+    const { rows } = await client.query(
+      `select * FROM activities  ORDER BY activities.id`
+    );
     return rows;
   } catch (error) {
     throw error;
