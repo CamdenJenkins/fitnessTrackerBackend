@@ -81,11 +81,11 @@ const createTables = async () => {
     );
     CREATE TABLE routine_activities (
         id SERIAL PRIMARY KEY,
-        routine_id	INTEGER REFERENCES routines (id),
-        activity_id	INTEGER REFERENCES activities (id),
+        routine_id	INTEGER REFERENCES routines (id) NOT NULL,
+        activity_id	INTEGER REFERENCES activities (id) NOT NULL,
         duration INTEGER,	
         count INTEGER,
-        UNIQUE (routine_id, activity_id)
+        UNIQUE  (routine_id, activity_id)
     );
 `
     );

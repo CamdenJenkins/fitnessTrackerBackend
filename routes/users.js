@@ -51,10 +51,10 @@ usersRouter.post("/login", async (req, res, next) => {
     const { username, password } = req.body;
 
     const user = await getUserByUsername(username);
-    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
-    const validPassword = await bcrypt.compare(user.password, hashedPassword);
+
+    const validPassword = await bcrypt.compare(password, user.password);
     console.log(user.password);
-    console.log(hashedPassword);
+    console.log(password);
     console.log(validPassword);
     delete user.password;
 
