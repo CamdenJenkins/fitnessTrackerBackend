@@ -8,6 +8,8 @@ const {
   updateActivity,
   getActivityById,
 } = require("../db/adapters/activities");
+const { getPublicRoutinesByActivity } = require("../db/adapters/routines");
+
 const { authRequired } = require("./utils");
 const activitiesRouter = express.Router();
 
@@ -54,6 +56,24 @@ activitiesRouter.patch("/:activityId", authRequired, async (req, res, next) => {
       next({
         name: "Unauthorized User Error",
         message: "You cannot update an activity that is not yours",
+      });
+    }
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
+
+activitiesRouter.get("/:activityId/routines", async (req, res, next) => {
+  const { activityId } = req.params;
+  try {
+    const routinesByActivity = await getPublicRoutinesByActivity(activityId);
+
+    if (routinesByActivity) {
+      res.send({ routines: routinesByActivity });
+    } else {
+      next({
+        name: "No Routines",
+        message: "No Routine linked to activity",
       });
     }
   } catch ({ name, message }) {
