@@ -1,51 +1,60 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../api/users";
 
-import Nav from "react-bootstrap/Nav";
-import Button from "react-bootstrap/Button";
-
-export default function NavBar({ username, setToken }) {
+import useUsers from "../hooks/useUsers";
+import styles from "../styles/Nav.module.css";
+export default function NavBar() {
   const navigate = useNavigate();
+  const { user, loggedIn, setLoggedIn } = useUsers();
+  console.log(user);
+  console.log(loggedIn);
   return (
-    <Nav fill variant="tabs" defaultActiveKey="/home">
-      <Nav.Item>
-        <h3>Welcome, {username}</h3>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link href="/routines">Routines</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link href="/activities">Activities</Nav.Link>
-      </Nav.Item>
+    <nav className={styles.nav}>
+      <span> {user.username}</span>
+      <Link className={styles.routines} to="/routines">
+        Routines
+      </Link>
+      <Link className={styles.activities} to="/activities">
+        Activiites
+      </Link>
 
-      {username === "Guest" ? (
+      <Link className={styles.makeRoutine} to="/makeroutine">
+        Create Routine
+      </Link>
+      <Link className={styles.makeActivity} to="makeactivity">
+        Create Activity
+      </Link>
+
+      {!loggedIn ? (
         <>
-          {" "}
-          <Nav.Item>
-            <Nav.Link href="/register">Register</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href="/login"> Login</Nav.Link>
-          </Nav.Item>
+          {""}
+          <span>
+            <Link className={styles.signup} to="/register">
+              Sign-up
+            </Link>
+          </span>
+          <span>
+            <Link className={styles.login} to="/login">
+              Login
+            </Link>
+          </span>
         </>
       ) : null}
 
-      {username !== "Guest" ? (
-        <>
-          {/* <Nav.Item>
-            <Nav.Link href="/posts/create_new_post">Create a Post</Nav.Link>
-          </Nav.Item> */}
-          <Button
-            variant="primary"
+      {loggedIn ? (
+        <span>
+          <button
+            className={styles.logout}
             onClick={() => {
               logoutUser();
               navigate("/login");
+              setLoggedIn(false);
             }}
           >
             Log Out
-          </Button>{" "}
-        </>
+          </button>
+        </span>
       ) : null}
-    </Nav>
+    </nav>
   );
 }

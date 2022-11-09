@@ -1,0 +1,22 @@
+.formCard {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+/* .form {
+    display: flex;
+    flex-direction: column;
+  } */
+
+.header {
+  text-align: center;
+}
+.attributes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.price {
+  margin-left: 20px;
+  margin-right: 20px;
+}

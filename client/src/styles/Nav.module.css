@@ -1,0 +1,54 @@
+.nav {
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+  height: 5vh;
+  color: white;
+  background-color: dodgerblue;
+  margin-bottom: 2rem;
+  margin-right: 1rem;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  position: sticky;
+  top: 0px;
+}
+
+.signup {
+  text-decoration: none;
+  color: white;
+}
+
+.routines {
+  text-decoration: none;
+  color: white;
+}
+
+.login {
+  text-decoration: none;
+  color: white;
+}
+
+.logout {
+  background-color: dodgerblue;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.activities {
+  text-decoration: none;
+  color: white;
+}
+
+.makeRoutine {
+  text-decoration: none;
+  color: white;
+}
+
+.makeActivity {
+  text-decoration: none;
+  color: white;
+}

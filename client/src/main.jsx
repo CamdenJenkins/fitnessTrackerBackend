@@ -4,16 +4,20 @@ import App from "./App";
 import RoutinesProvider from "./components/RoutinesProvider";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
+import "purecss/build/pure.css";
 import ActivitiesProvider from "./components/ActivitiesProvider";
+import UsersProvider from "./components/UsersProvider";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ActivitiesProvider>
-        <RoutinesProvider>
-          <App />
-        </RoutinesProvider>
-      </ActivitiesProvider>
+      <UsersProvider>
+        <ActivitiesProvider>
+          <RoutinesProvider>
+            <App />
+          </RoutinesProvider>
+        </ActivitiesProvider>
+      </UsersProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { registerUser, loginUser } from "../api/users";
-
+import styles from "../styles/Login.module.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import useUsers from "../hooks/useUsers";
 
 export default function UsersComponent() {
   const { method } = useParams();
@@ -12,10 +13,12 @@ export default function UsersComponent() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { setLoggedIn } = useUsers();
 
   return (
-    <div>
-      <Form
+    <div className={styles.form}>
+      <form
+        className="pure-form pure-form-stacked"
         onSubmit={async (event) => {
           event.preventDefault();
           setError("");
@@ -25,9 +28,11 @@ export default function UsersComponent() {
           } else {
             result = await loginUser(username, password);
           }
-          if (result.success) {
+          console.log(result);
+          if (result.user) {
             setPassword("");
             setUsername("");
+            setLoggedIn(true);
             navigate("/routines");
           } else {
             setError(result.error);
@@ -35,22 +40,28 @@ export default function UsersComponent() {
         }}
       >
         {error && <h5>{error}</h5>}
-        <Form.Control
+        <input
+          className={styles.username}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           type="text"
           placeholder="username"
         />
-        <Form.Control
+        <input
+          className={styles.password}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="password"
         />
-        <Button variant="primary" type="submit">
+        <button
+          id={styles.button}
+          className="pure-button pure-button-primary"
+          type="submit"
+        >
           {method === "register" ? "Register" : "Login"}
-        </Button>
-      </Form>
+        </button>
+      </form>
     </div>
   );
 }
