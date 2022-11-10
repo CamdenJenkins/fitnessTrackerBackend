@@ -40,7 +40,7 @@ export const getRoutineById = async (routineId) => {
   return result;
 };
 export const editRoutine = async (is_public, name, goal, routineId) => {
-  const response = await fetch(`(/routes/routines/${routineId})`, {
+  const response = await fetch(`/routes/routines/${routineId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
