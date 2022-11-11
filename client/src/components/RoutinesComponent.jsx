@@ -21,30 +21,22 @@ export default function RoutinesComponent() {
   return (
     <div>
       {routines.map((routine) => {
-        console.log(routine);
         return (
           <div className={styles.routinesPage} key={routine.id}>
             <div className={styles.routineCard}>
               <h3 className={styles.creator}>
                 Created By: {routine.creatorName}
               </h3>
-              <h2 className={styles.header}>Muscle Group: {routine.name}</h2>
-              <p className={styles.body}>Goal: {routine.goal}</p>
+              <h6 className={styles.header}>{routine.name}</h6>
+              <p className={styles.body}>{routine.goal}</p>
               <p className={styles.activities}>
-                Activities:{" "}
-                {routine.activities.map((activity) => {
-                  return (
-                    <h4>
-                      {activity.name}: {activity.description}
-                    </h4>
-                  );
-                })}
+                {/* Activities: {routine.activities} */}
               </p>
               <button
                 id={styles.button}
                 className="pure-button pure-button-primary"
                 onClick={() => {
-                  navigate(`/routines/${routine.id}`);
+                  navigate(`/singleroutine/${routine.id}`);
                 }}
               >
                 See Details
