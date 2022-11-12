@@ -36,7 +36,7 @@ export default function RoutinesComponent() {
                 id={styles.button}
                 className="pure-button pure-button-primary"
                 onClick={() => {
-                  navigate(`/singleroutine/${routine.id}`);
+                  navigate(`/routines/${routine.id}`);
                 }}
               >
                 See Details

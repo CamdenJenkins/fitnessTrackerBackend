@@ -22,6 +22,16 @@ activitiesRouter.get("/", async (req, res, next) => {
   }
 });
 
+activitiesRouter.get("/:activityId", async (req, res, next) => {
+  const { activityId } = req.params;
+  try {
+    const singleActivity = await getActivityById(activityId);
+    res.send(singleActivity);
+  } catch (error) {
+    next(error);
+  }
+});
+
 activitiesRouter.post("/", authRequired, async (req, res, next) => {
   try {
     const activity = await createActivities(req.body);
@@ -49,7 +59,7 @@ activitiesRouter.patch("/:activityId", authRequired, async (req, res, next) => {
   }
   try {
     const originalActivity = await getActivityById(activityId);
-    if (originalActivity.id === req.user.id) {
+    if (req.user) {
       const updatedActivity = await updateActivity(activityId, updateFields);
       res.send({ activity: updatedActivity });
     } else {

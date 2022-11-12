@@ -11,7 +11,7 @@ export default function NavBar() {
   return (
     <nav className={styles.nav}>
       <span> {user.username}</span>
-      <Link className={styles.routines} to="/routines">
+      <Link className={styles.routines} to="/">
         Routines
       </Link>
       <Link className={styles.activities} to="/activities">
