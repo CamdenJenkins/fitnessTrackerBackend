@@ -36,7 +36,6 @@ export const getRoutineById = async (routineId) => {
   const result = await response.json();
   console.log(result);
 
-  // console.log(filteredRoutine[0]);
   return result;
 };
 export const editRoutine = async (is_public, name, goal, routineId) => {

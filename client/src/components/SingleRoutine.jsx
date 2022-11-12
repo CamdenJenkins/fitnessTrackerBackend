@@ -59,7 +59,7 @@ const SingleRoutineView = () => {
           id={styles.button}
           className="pure-button pure-button-primary"
           onClick={() => {
-            navigate(`/edit/${routineId}`);
+            navigate(`/edit/routines/${routineId}`);
           }}
         >
           Edit Routine

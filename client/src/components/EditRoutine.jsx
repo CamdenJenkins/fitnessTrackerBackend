@@ -10,19 +10,6 @@ export default function EditRoutine() {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
 
-  //   useEffect(() => {
-  //     async function getRoutine() {
-  //       const result = await getRoutineById(routineId);
-  //       console.log(result);
-  //       setRoutine(result);
-
-  //       setIs_public(routine.is_public);
-  //       setName(routine.name);
-  //       setGoal(routine.goal);
-  //     }
-  //     getRoutine();
-  //   }, []);
-
   return (
     <div>
       <form
@@ -31,7 +18,7 @@ export default function EditRoutine() {
           console.log({ is_public, name, goal });
           const result = await editRoutine(is_public, name, goal, routineId);
           console.log(result);
-          navigate("/routines");
+          navigate("/");
         }}
       >
         <h3>Edit the Routine</h3>
@@ -62,7 +49,7 @@ export default function EditRoutine() {
             setIs_public(!is_public);
           }}
         ></input>
-        <button type="submit">Update Post</button>
+        <button type="submit">Update </button>
       </form>
     </div>
   );

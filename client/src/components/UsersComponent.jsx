@@ -33,7 +33,7 @@ export default function UsersComponent() {
             setPassword("");
             setUsername("");
             setLoggedIn(true);
-            navigate("/routines");
+            navigate("/");
           } else {
             setError(result.error);
           }
