@@ -13,7 +13,7 @@ export default function UsersComponent() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { setLoggedIn } = useUsers();
+  const { setLoggedIn, setUser } = useUsers();
 
   return (
     <div className={styles.form}>
@@ -33,13 +33,14 @@ export default function UsersComponent() {
             setPassword("");
             setUsername("");
             setLoggedIn(true);
+
             navigate("/");
           } else {
-            setError(result.error);
+            setError(result);
           }
         }}
       >
-        {error && <h5>{error}</h5>}
+        {/* {error && <h5>{error}</h5>} */}
         <input
           className={styles.username}
           value={username}

@@ -10,7 +10,10 @@ export default function NavBar() {
   console.log(loggedIn);
   return (
     <nav className={styles.nav}>
-      <span> {user.username}</span>
+      <Link className={styles.username} to="/routines/myroutines">
+        {" "}
+        {user.username}
+      </Link>
       <Link className={styles.routines} to="/">
         Routines
       </Link>
