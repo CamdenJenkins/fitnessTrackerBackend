@@ -11,6 +11,7 @@ import EditRoutine from "./components/EditRoutine";
 import EditActivity from "./components/EditActivity";
 import SingleActivityView from "./components/SingleActivity";
 import RoutinesByActivity from "./components/RoutinesByActivity";
+import MyRoutines from "./components/MyRoutines";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           path="/activities/:activityId/routines"
           element={<RoutinesByActivity />}
         />
+        <Route path="/routines/myroutines" element={<MyRoutines />} />
       </Routes>
     </div>
   );
