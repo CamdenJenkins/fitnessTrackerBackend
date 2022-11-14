@@ -30,7 +30,18 @@ export default function RoutinesComponent() {
               <h6 className={styles.header}>{routine.name}</h6>
               <p className={styles.body}>{routine.goal}</p>
               <p className={styles.activities}>
-                {/* Activities: {routine.activities} */}
+                <p className={styles.activities}>
+                  Activities:{" "}
+                  {routine.activities.map((activity) => {
+                    return (
+                      <p>
+                        {activity.name}: {activity.description}
+                        <p>Count: {activity.count}</p>
+                        <p>Duration: {activity.duration}</p>
+                      </p>
+                    );
+                  })}
+                </p>
               </p>
               <button
                 id={styles.button}
