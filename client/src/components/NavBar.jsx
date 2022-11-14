@@ -18,31 +18,30 @@ export default function NavBar() {
         Activiites
       </Link>
 
-      <Link className={styles.makeRoutine} to="/makeroutine">
-        Create Routine
-      </Link>
-      <Link className={styles.makeActivity} to="makeactivity">
-        Create Activity
-      </Link>
-
       {!loggedIn ? (
         <>
           {""}
-          <span>
-            <Link className={styles.signup} to="/register">
-              Sign-up
-            </Link>
-          </span>
-          <span>
-            <Link className={styles.login} to="/login">
-              Login
-            </Link>
-          </span>
+
+          <Link className={styles.signup} to="/register">
+            Sign-up
+          </Link>
+
+          <Link className={styles.login} to="/login">
+            Login
+          </Link>
         </>
       ) : null}
 
       {loggedIn ? (
-        <span>
+        <>
+          <Link className={styles.makeRoutine} to="/makeroutine">
+            Create Routine
+          </Link>
+
+          <Link className={styles.makeActivity} to="makeactivity">
+            Create Activity
+          </Link>
+
           <button
             className={styles.logout}
             onClick={() => {
@@ -53,7 +52,7 @@ export default function NavBar() {
           >
             Log Out
           </button>
-        </span>
+        </>
       ) : null}
     </nav>
   );

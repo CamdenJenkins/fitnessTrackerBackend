@@ -26,6 +26,7 @@ export default function ActivitiesComponent() {
             <div className={styles.routineCard}>
               <h2 className={styles.header}>Exercise: {activity.name}</h2>
               <p className={styles.body}>Description: {activity.description}</p>
+
               <button
                 id={styles.button}
                 className="pure-button pure-button-primary"
@@ -34,6 +35,16 @@ export default function ActivitiesComponent() {
                 }}
               >
                 See Details
+              </button>
+
+              <button
+                id={styles.button}
+                className="pure-button pure-button-primary"
+                onClick={() => {
+                  navigate(`/activities/${activity.id}/routines`);
+                }}
+              >
+                Routines
               </button>
             </div>
           </div>
