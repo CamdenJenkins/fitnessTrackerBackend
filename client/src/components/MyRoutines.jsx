@@ -10,7 +10,6 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import useActivities from "../hooks/useActivities";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import { addRoutineActivity } from "../api/routine_activities";
-import DropDownForm from "./DropDownForm";
 
 export default function MyRoutines() {
   const { user } = useUsers();
@@ -67,7 +66,39 @@ export default function MyRoutines() {
                   >
                     See Details
                   </button>
-                  <DropDownForm />
+                  <form>
+                    <DropdownButton
+                      id="dropdown-basic-button"
+                      title="Add Activity"
+                    >
+                      {activities.map((activity) => {
+                        console.log(activity);
+                        return (
+                          <DropdownItem
+                            onClick={async () => {
+                              console.log(routine);
+                              const result = await addRoutineActivity(
+                                routine.id,
+                                activity.id,
+                                activity.count,
+                                activity.duration
+                              );
+                              console.log(
+                                "routineId: ",
+                                routine.id,
+                                "activityId",
+                                activity.id
+                              );
+                              // routine.activities.push(activity);
+                              console.log(result);
+                            }}
+                          >
+                            {activity.name} {activity.count} {activity.duration}
+                          </DropdownItem>
+                        );
+                      })}
+                    </DropdownButton>
+                  </form>
                 </div>
               </div>
             ) : null}

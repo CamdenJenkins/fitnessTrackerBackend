@@ -10,20 +10,7 @@ const DropDownForm = () => {
   const [duration, setDuration] = useState("");
 
   return (
-    <form
-    //   onSubmit={async () => {
-    //     console.log(routine);
-    //     const result = await addRoutineActivity(
-    //       routine.id,
-    //       activity.id,
-    //       count,
-    //       duration
-    //     );
-    //     console.log("routineId: ", routine.id, "activityId", activity.id);
-    //     // routine.activities.push(activity);
-    //     console.log(result);
-    //   }}
-    >
+    <form>
       <DropdownButton id="dropdown-basic-button" title="Dropdown button">
         {activities.map((activity) => {
           console.log(activity);
@@ -33,7 +20,9 @@ const DropDownForm = () => {
                 console.log(routine);
                 const result = await addRoutineActivity(
                   routine.id,
-                  activity.id
+                  activity.id,
+                  activity.count,
+                  activity.duration
                 );
                 console.log(
                   "routineId: ",
@@ -49,27 +38,6 @@ const DropDownForm = () => {
             </DropdownItem>
           );
         })}
-        <label>Count: </label>
-        <input
-          value={count}
-          type="text"
-          placeholder="count"
-          onChange={(e) => {
-            setCount(+e.target.value);
-          }}
-        ></input>
-        <label>Duration: </label>
-        <input
-          value={duration}
-          type="text"
-          placeholder="duration"
-          onChange={(e) => {
-            setDuration(+e.target.value);
-          }}
-        ></input>
-        <button className="pure-button pure-button-primary" type="submit">
-          Submit
-        </button>
       </DropdownButton>
     </form>
   );
