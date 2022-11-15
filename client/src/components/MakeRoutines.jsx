@@ -17,7 +17,7 @@ const MakeRoutines = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           const result = await makeRoutine(is_public, name, goal);
-          navigate("/routines");
+          navigate("/");
         }}
       >
         <h3 className={styles.header}>Create New Routine</h3>

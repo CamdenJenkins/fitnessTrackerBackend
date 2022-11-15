@@ -5,10 +5,15 @@ import styles from "../styles/Routines.module.css";
 import { useNavigate } from "react-router-dom";
 import useUsers from "../hooks/useUsers";
 import { Link } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import useActivities from "../hooks/useActivities";
+import DropdownItem from "react-bootstrap/esm/DropdownItem";
+import { addRoutineActivity } from "../api/routine_activities";
 
 export default function MyRoutines() {
   const { user } = useUsers();
-
+  const { activities } = useActivities();
   const { routines, setRoutines } = useRoutines();
   const navigate = useNavigate();
   useEffect(() => {
@@ -16,6 +21,7 @@ export default function MyRoutines() {
       const display = await fetchRoutines();
       setRoutines(display);
       console.log(display);
+      console.log(activities);
     };
     recieveRoutines();
   }, []);
@@ -23,7 +29,7 @@ export default function MyRoutines() {
   return (
     <div>
       {routines.map((routine) => {
-        console.log(routine.creatorName);
+        console.log(routine);
         console.log(user.username);
         return (
           <>
@@ -40,11 +46,13 @@ export default function MyRoutines() {
                       Activities:{" "}
                       {routine.activities.map((activity) => {
                         return (
-                          <p>
-                            {activity.name}: {activity.description}
-                            <p>Count: {activity.count}</p>
-                            <p>Duration: {activity.duration}</p>
-                          </p>
+                          <>
+                            <p>
+                              {activity.name}: {activity.description}
+                              <p>Count: {activity.count}</p>
+                              <p>Duration: {activity.duration}</p>
+                            </p>
+                          </>
                         );
                       })}
                     </p>
@@ -58,6 +66,39 @@ export default function MyRoutines() {
                   >
                     See Details
                   </button>
+                  <form>
+                    <DropdownButton
+                      id="dropdown-basic-button"
+                      title="Add Activity"
+                    >
+                      {activities.map((activity) => {
+                        console.log(activity);
+                        return (
+                          <DropdownItem
+                            onClick={async () => {
+                              console.log(routine);
+                              const result = await addRoutineActivity(
+                                routine.id,
+                                activity.id,
+                                activity.count,
+                                activity.duration
+                              );
+                              console.log(
+                                "routineId: ",
+                                routine.id,
+                                "activityId",
+                                activity.id
+                              );
+                              // routine.activities.push(activity);
+                              console.log(result);
+                            }}
+                          >
+                            {activity.name} {activity.count} {activity.duration}
+                          </DropdownItem>
+                        );
+                      })}
+                    </DropdownButton>
+                  </form>
                 </div>
               </div>
             ) : null}
