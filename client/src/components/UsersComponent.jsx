@@ -29,6 +29,7 @@ export default function UsersComponent() {
             result = await loginUser(username, password);
           }
           console.log(result);
+
           if (result.user) {
             setPassword("");
             setUsername("");
@@ -36,11 +37,12 @@ export default function UsersComponent() {
 
             navigate("/");
           } else {
-            setError(result);
+            setError(result.message);
+
+            console.log(error);
           }
         }}
       >
-        {/* {error && <h5>{error}</h5>} */}
         <input
           className={styles.username}
           value={username}
@@ -63,6 +65,7 @@ export default function UsersComponent() {
           {method === "register" ? "Register" : "Login"}
         </button>
       </form>
+      <div className={styles.error}>{error && <h5>{error}</h5>}</div>
     </div>
   );
 }
