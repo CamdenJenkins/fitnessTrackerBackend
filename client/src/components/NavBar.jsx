@@ -37,14 +37,6 @@ export default function NavBar() {
 
       {loggedIn ? (
         <>
-          <Link className={styles.makeRoutine} to="/makeroutine">
-            Create Routine
-          </Link>
-
-          <Link className={styles.makeActivity} to="makeactivity">
-            Create Activity
-          </Link>
-
           <button
             className={styles.logout}
             onClick={() => {
