@@ -69,7 +69,10 @@ usersRouter.post("/login", async (req, res, next) => {
       delete user.password;
       res.send({ user });
     } else {
-      res.send("Invaild Login");
+      next({
+        name: "Invaild Login",
+        message: "Username or Password is incorrect",
+      });
     }
   } catch (error) {
     next(error);

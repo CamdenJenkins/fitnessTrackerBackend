@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 80vh;
+  flex-direction: column;
 }
 
 .username {
@@ -15,4 +16,8 @@
 
 #button {
   width: 7rem;
+}
+
+.error {
+  color: red;
 }
