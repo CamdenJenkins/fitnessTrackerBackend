@@ -52,6 +52,12 @@ usersRouter.post("/login", async (req, res, next) => {
 
     const user = await getUserByUsername(username);
 
+    if (!user) {
+      next({
+        name: "InvaildLogin",
+        message: "Username not found",
+      });
+    }
     const validPassword = await bcrypt.compare(password, user.password);
     console.log(user.password);
     console.log(password);
