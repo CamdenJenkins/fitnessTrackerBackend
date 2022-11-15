@@ -4,6 +4,7 @@ import { fetchRoutines } from "../api/routines";
 import styles from "../styles/Routines.module.css";
 import { useNavigate } from "react-router-dom";
 import useUsers from "../hooks/useUsers";
+import { Link } from "react-router-dom";
 
 export default function MyRoutines() {
   const { user } = useUsers();
@@ -63,6 +64,27 @@ export default function MyRoutines() {
           </>
         );
       })}
+      <div className={styles.createBar}>
+        <button
+          className="pure-button pure-button-primary"
+          id={styles.createroutine}
+          onClick={() => {
+            navigate("/makeroutine");
+          }}
+        >
+          Create Routine
+        </button>
+
+        <button
+          className="pure-button pure-button-primary"
+          id={styles.createactivity}
+          onClick={() => {
+            navigate("/makeactivity");
+          }}
+        >
+          Create Activity
+        </button>
+      </div>
     </div>
   );
 }
