@@ -7,17 +7,17 @@ import "./index.css";
 import "purecss/build/pure.css";
 import ActivitiesProvider from "./components/ActivitiesProvider";
 import UsersProvider from "./components/UsersProvider";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <UsersProvider>
-        <ActivitiesProvider>
+      <ActivitiesProvider>
+        <UsersProvider>
           <RoutinesProvider>
             <App />
           </RoutinesProvider>
-        </ActivitiesProvider>
-      </UsersProvider>
+        </UsersProvider>
+      </ActivitiesProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

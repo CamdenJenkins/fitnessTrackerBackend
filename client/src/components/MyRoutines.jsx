@@ -5,10 +5,16 @@ import styles from "../styles/Routines.module.css";
 import { useNavigate } from "react-router-dom";
 import useUsers from "../hooks/useUsers";
 import { Link } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import useActivities from "../hooks/useActivities";
+import DropdownItem from "react-bootstrap/esm/DropdownItem";
+import { addRoutineActivity } from "../api/routine_activities";
+import DropDownForm from "./DropDownForm";
 
 export default function MyRoutines() {
   const { user } = useUsers();
-
+  const { activities } = useActivities();
   const { routines, setRoutines } = useRoutines();
   const navigate = useNavigate();
   useEffect(() => {
@@ -16,6 +22,7 @@ export default function MyRoutines() {
       const display = await fetchRoutines();
       setRoutines(display);
       console.log(display);
+      console.log(activities);
     };
     recieveRoutines();
   }, []);
@@ -23,7 +30,7 @@ export default function MyRoutines() {
   return (
     <div>
       {routines.map((routine) => {
-        console.log(routine.creatorName);
+        console.log(routine);
         console.log(user.username);
         return (
           <>
@@ -40,11 +47,13 @@ export default function MyRoutines() {
                       Activities:{" "}
                       {routine.activities.map((activity) => {
                         return (
-                          <p>
-                            {activity.name}: {activity.description}
-                            <p>Count: {activity.count}</p>
-                            <p>Duration: {activity.duration}</p>
-                          </p>
+                          <>
+                            <p>
+                              {activity.name}: {activity.description}
+                              <p>Count: {activity.count}</p>
+                              <p>Duration: {activity.duration}</p>
+                            </p>
+                          </>
                         );
                       })}
                     </p>
@@ -58,6 +67,7 @@ export default function MyRoutines() {
                   >
                     See Details
                   </button>
+                  <DropDownForm />
                 </div>
               </div>
             ) : null}
