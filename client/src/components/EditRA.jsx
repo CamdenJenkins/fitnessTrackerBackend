@@ -23,6 +23,7 @@ const EditRA = () => {
 
   return (
     <div>
+      {/* <div>{ra}</div> */}
       <button
         onClick={() => {
           navigate(`/routine_activities/${routineActivityId}`);
