@@ -12,6 +12,8 @@ import EditActivity from "./components/EditActivity";
 import SingleActivityView from "./components/SingleActivity";
 import RoutinesByActivity from "./components/RoutinesByActivity";
 import MyRoutines from "./components/MyRoutines";
+import RoutineActivities from "./components/EditRoutineActivities";
+import EditRA from "./components/EditRA";
 
 function App() {
   return (
@@ -36,6 +38,14 @@ function App() {
           element={<RoutinesByActivity />}
         />
         <Route path="/routines/myroutines" element={<MyRoutines />} />
+        <Route
+          path="/routine_activities/:routineId/:activityId"
+          element={<EditRA />}
+        />
+        <Route
+          path="/routine_activities/:raId"
+          element={<RoutineActivities />}
+        />
       </Routes>
     </div>
   );

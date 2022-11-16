@@ -8,6 +8,7 @@ const {
   getRoutineActivityById,
   updateRoutineActivity,
   destroyRoutineActivity,
+  getRoutineActiviitiesByRoutine,
 } = require("../db/adapters/routine_activites");
 const { authRequired } = require("./utils");
 const routineActivitiesRouter = express.Router();
@@ -87,6 +88,20 @@ routineActivitiesRouter.delete(
       }
     } catch ({ name, message }) {
       next({ name, message });
+    }
+  }
+);
+
+routineActivitiesRouter.get(
+  "/:routineId/:activityId",
+  async (req, res, next) => {
+    try {
+      const { routineId, activityId } = req.params;
+
+      const ra = await getRoutineActiviitiesByRoutine(routineId, activityId);
+      res.send(ra);
+    } catch (error) {
+      next(error);
     }
   }
 );

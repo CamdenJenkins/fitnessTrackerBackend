@@ -5,7 +5,7 @@ import styles from "../styles/SingleRoutine.module.css";
 
 const SingleRoutineView = () => {
   const { routineId } = useParams();
-
+  const { raId } = useParams();
   const [singleRoutine, setSingleRoutine] = useState({});
 
   const navigate = useNavigate();
@@ -40,9 +40,13 @@ const SingleRoutineView = () => {
             Activities:{" "}
             {singleRoutine.activities.map((activity) => {
               return (
-                <p>
-                  {activity.name}: {activity.description}
-                </p>
+                <div>
+                  <p>
+                    {activity.name}: {activity.description}
+                  </p>
+                  <p>Count: {activity.count}</p>
+                  <p>Duration: {activity.duration}</p>
+                </div>
               );
             })}
           </p>

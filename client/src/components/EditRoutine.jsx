@@ -5,7 +5,7 @@ import { editCountDuration } from "../api/routine_activities";
 
 export default function EditRoutine() {
   const navigate = useNavigate();
-  const [routine, setRoutine] = useState();
+
   const { routineId } = useParams();
   const [is_public, setIs_public] = useState(true);
   const [name, setName] = useState("");
@@ -16,6 +16,7 @@ export default function EditRoutine() {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
+
           console.log({ is_public, name, goal });
           const result = await editRoutine(is_public, name, goal, routineId);
 
