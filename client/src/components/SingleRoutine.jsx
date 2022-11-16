@@ -22,7 +22,7 @@ const SingleRoutineView = () => {
   const deleteRoutineById = async () => {
     const result = await deleteRoutine(singleRoutine.id);
     console.log(singleRoutine.id);
-    navigate("/routines");
+    navigate("/");
   };
 
   console.log(singleRoutine);
