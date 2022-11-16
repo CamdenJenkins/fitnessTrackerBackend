@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useRoutines from "../hooks/useRoutines";
 import { fetchRoutines } from "../api/routines";
 import styles from "../styles/Routines.module.css";
@@ -15,6 +15,8 @@ export default function MyRoutines() {
   const { user } = useUsers();
   const { activities } = useActivities();
   const { routines, setRoutines } = useRoutines();
+  const [count, setCount] = useState("");
+  const [duration, setDuration] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     const recieveRoutines = async () => {
@@ -80,9 +82,10 @@ export default function MyRoutines() {
                               const result = await addRoutineActivity(
                                 routine.id,
                                 activity.id,
-                                activity.count,
-                                activity.duration
+                                count,
+                                duration
                               );
+                              navigate(`/`);
                               console.log(
                                 "routineId: ",
                                 routine.id,
@@ -93,10 +96,26 @@ export default function MyRoutines() {
                               console.log(result);
                             }}
                           >
-                            {activity.name} {activity.count} {activity.duration}
+                            {activity.name}
                           </DropdownItem>
                         );
                       })}
+                      <label>Count: </label>
+                      <input
+                        type="text"
+                        value={count}
+                        onChange={(e) => {
+                          setCount(+e.target.value);
+                        }}
+                      />
+                      <label>Duration:</label>
+                      <input
+                        type="text"
+                        value={duration}
+                        onChange={(e) => {
+                          setDuration(+e.target.value);
+                        }}
+                      />
                     </DropdownButton>
                   </form>
                 </div>

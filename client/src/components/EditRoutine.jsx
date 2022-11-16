@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getRoutineById, editRoutine } from "../api/routines";
+import { editCountDuration } from "../api/routine_activities";
 
 export default function EditRoutine() {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ export default function EditRoutine() {
           e.preventDefault();
           console.log({ is_public, name, goal });
           const result = await editRoutine(is_public, name, goal, routineId);
+
           console.log(result);
           navigate("/");
         }}
