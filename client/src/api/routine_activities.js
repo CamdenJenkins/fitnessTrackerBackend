@@ -34,3 +34,9 @@ export const editCountDuration = async (count, duration, raId) => {
   const result = await response.json();
   return result;
 };
+
+export async function fetchRoutineActivity(routineId) {
+  const response = await fetch(`/routes/routine_activities/${routineId}`);
+  const result = await response.json();
+  return result;
+}

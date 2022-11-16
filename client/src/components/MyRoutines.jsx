@@ -9,7 +9,10 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import useActivities from "../hooks/useActivities";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
-import { addRoutineActivity } from "../api/routine_activities";
+import {
+  addRoutineActivity,
+  editCountDuration,
+} from "../api/routine_activities";
 
 export default function MyRoutines() {
   const { user } = useUsers();
@@ -50,9 +53,20 @@ export default function MyRoutines() {
                         return (
                           <>
                             <p>
-                              {activity.name}: {activity.description}
+                              <p>
+                                {activity.name}: {activity.description}
+                              </p>
                               <p>Count: {activity.count}</p>
                               <p>Duration: {activity.duration}</p>
+                              <button
+                                onClick={() => {
+                                  navigate(
+                                    `/routine_activities/${routine.id}/${activity.id}`
+                                  );
+                                }}
+                              >
+                                {activity.id},{routine.id}
+                              </button>
                             </p>
                           </>
                         );
