@@ -43,9 +43,7 @@ const getRoutineActiviitiesByRoutine = async (routineId, activityId) => {
     const { rows } = await client.query(
       `select * 
       FROM routine_activities
-      WHERE routine_id=${routineId}
-      AND 
-      WHERE activity_id=${activityId}
+      WHERE routine_id=${routineId} AND activity_id=${activityId}
       `
     );
     return rows;

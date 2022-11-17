@@ -21,7 +21,7 @@ export const addRoutineActivity = async (
 };
 
 export const editCountDuration = async (count, duration, raId) => {
-  const response = await fetch(`/routes/routine_activities/${raId}}`, {
+  const response = await fetch(`/routes/routine_activities/${raId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

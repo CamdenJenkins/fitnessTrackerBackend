@@ -12,8 +12,8 @@ import EditActivity from "./components/EditActivity";
 import SingleActivityView from "./components/SingleActivity";
 import RoutinesByActivity from "./components/RoutinesByActivity";
 import MyRoutines from "./components/MyRoutines";
-import RoutineActivities from "./components/EditRoutineActivities";
-import EditRA from "./components/EditRA";
+import EditRoutineActivities from "./components/EditRoutineActivities";
+import EditRA from "./components/GetRaId";
 
 function App() {
   return (
@@ -44,7 +44,7 @@ function App() {
         />
         <Route
           path="/routine_activities/:raId"
-          element={<RoutineActivities />}
+          element={<EditRoutineActivities />}
         />
       </Routes>
     </div>

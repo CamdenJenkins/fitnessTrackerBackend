@@ -47,6 +47,25 @@ const getAllActivities = async () => {
   }
 };
 
+const getActivityByName = async (activityName) => {
+  try {
+    const {
+      rows: [activity],
+    } = await client.query(
+      `select * 
+            FROM activities
+            WHERE activities.name = ${activityName} `
+    );
+
+    if (!activity) {
+      return null;
+    }
+    return activity;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const updateActivity = async (activityId, fields = {}) => {
   const setString = Object.keys(fields)
     .map((key, index) => `"${key}"=$${index + 1}`)
@@ -75,4 +94,5 @@ module.exports = {
   getActivityById,
   getAllActivities,
   updateActivity,
+  getActivityByName,
 };

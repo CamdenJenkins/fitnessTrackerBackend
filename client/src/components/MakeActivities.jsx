@@ -8,7 +8,7 @@ const MakeActivities = () => {
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-
+  const [error, setError] = useState("");
   return (
     <div className={styles.formCard}>
       <form
@@ -17,7 +17,15 @@ const MakeActivities = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           const result = await makeActivity(name, description);
-          navigate("/activities");
+          if (result.message) {
+            setName("");
+            setDescription("");
+            setError("Activity name already exists");
+          } else {
+            navigate("/activities");
+
+            console.log(error);
+          }
         }}
       >
         <h3 className={styles.header}>Create New Activity</h3>
@@ -49,6 +57,7 @@ const MakeActivities = () => {
         <button className="pure-button pure-button-primary" type="submit">
           Add Activity
         </button>
+        <div className={styles.error}>{error && <h5>{error}</h5>}</div>
       </form>
     </div>
   );
