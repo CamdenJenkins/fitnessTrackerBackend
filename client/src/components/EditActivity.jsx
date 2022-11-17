@@ -9,7 +9,7 @@ export default function EditActivity() {
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-
+  const [error, setError] = useState("");
   return (
     <div>
       <form

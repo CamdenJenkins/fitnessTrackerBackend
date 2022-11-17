@@ -46,7 +46,7 @@ routineActivitiesRouter.patch(
     try {
       const originalRa = await getRoutineActivityById(raId);
       const routine = await getRoutineById(originalRa.routine_id);
-      if (routine.creator_id === req.user.id) {
+      if (req.user) {
         const updatedRa = await updateRoutineActivity(raId, updateFields);
         res.send({ routine: updatedRa });
       } else {

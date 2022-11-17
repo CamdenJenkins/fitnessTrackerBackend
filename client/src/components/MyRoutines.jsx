@@ -59,13 +59,15 @@ export default function MyRoutines() {
                               <p>Count: {activity.count}</p>
                               <p>Duration: {activity.duration}</p>
                               <button
+                                id={styles.button}
+                                className="pure-button pure-button-primary"
                                 onClick={() => {
                                   navigate(
                                     `/routine_activities/${routine.id}/${activity.id}`
                                   );
                                 }}
                               >
-                                {activity.id},{routine.id}
+                                Edit
                               </button>
                             </p>
                           </>
