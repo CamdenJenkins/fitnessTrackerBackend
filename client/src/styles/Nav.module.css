@@ -57,3 +57,33 @@
   text-decoration: none;
   color: white;
 }
+
+.routines:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.activities:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.logout:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.signup:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.login:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.username:hover {
+  color: white;
+  text-decoration: underline;
+}

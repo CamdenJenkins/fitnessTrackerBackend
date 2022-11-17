@@ -33,6 +33,7 @@ export default function MyRoutines() {
 
   return (
     <div>
+      <h1>{user.username}'s Routines</h1>
       {routines.map((routine) => {
         console.log(routine);
         console.log(user.username);

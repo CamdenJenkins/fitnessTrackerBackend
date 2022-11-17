@@ -20,6 +20,7 @@ export default function RoutinesComponent() {
 
   return (
     <div>
+      <h1>Routines</h1>
       {routines.map((routine) => {
         return (
           <div className={styles.routinesPage} key={routine.id}>

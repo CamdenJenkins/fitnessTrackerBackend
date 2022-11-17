@@ -14,6 +14,7 @@ import RoutinesByActivity from "./components/RoutinesByActivity";
 import MyRoutines from "./components/MyRoutines";
 import EditRoutineActivities from "./components/EditRoutineActivities";
 import EditRA from "./components/GetRaId";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           element={<EditRoutineActivities />}
         />
       </Routes>
+      <Footer />
     </div>
   );
 }
