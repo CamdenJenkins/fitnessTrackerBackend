@@ -28,46 +28,48 @@ const SingleRoutineView = () => {
   console.log(singleRoutine);
 
   return (
-    <div className={styles.routinesPage} key={singleRoutine.id}>
-      <div className={styles.routineCard}>
-        <h3 className={styles.creator}>
-          Created By: {singleRoutine.creatorName}
-        </h3>
-        <h2 className={styles.header}>Muscle Group: {singleRoutine.name}</h2>
-        <p className={styles.body}>Goal: {singleRoutine.goal}</p>
-        {singleRoutine.activities ? (
-          <p className={styles.activities}>
-            Activities:{" "}
-            {singleRoutine.activities.map((activity) => {
-              return (
-                <div>
-                  <p>
-                    {activity.name}: {activity.description}
-                  </p>
-                  <p>Count: {activity.count}</p>
-                  <p>Duration: {activity.duration}</p>
-                </div>
-              );
-            })}
-          </p>
-        ) : null}
+    <div className={styles.page}>
+      <div className={styles.routinesPage} key={singleRoutine.id}>
+        <div className={styles.routineCard}>
+          <h3 className={styles.creator}>
+            Created By: {singleRoutine.creatorName}
+          </h3>
+          <h2 className={styles.header}>Muscle Group: {singleRoutine.name}</h2>
+          <p className={styles.body}>Goal: {singleRoutine.goal}</p>
+          {singleRoutine.activities ? (
+            <p className={styles.activities}>
+              Activities:{" "}
+              {singleRoutine.activities.map((activity) => {
+                return (
+                  <div>
+                    <p>
+                      {activity.name}: {activity.description}
+                    </p>
+                    <p>Count: {activity.count}</p>
+                    <p>Duration: {activity.duration}</p>
+                  </div>
+                );
+              })}
+            </p>
+          ) : null}
 
-        <button
-          id={styles.button}
-          className="pure-button pure-button-primary"
-          onClick={deleteRoutineById}
-        >
-          Delete
-        </button>
-        <button
-          id={styles.button}
-          className="pure-button pure-button-primary"
-          onClick={() => {
-            navigate(`/edit/routines/${routineId}`);
-          }}
-        >
-          Edit Routine
-        </button>
+          <button
+            id={styles.button}
+            className="pure-button pure-button-primary"
+            onClick={deleteRoutineById}
+          >
+            Delete
+          </button>
+          <button
+            id={styles.button}
+            className="pure-button pure-button-primary"
+            onClick={() => {
+              navigate(`/edit/routines/${routineId}`);
+            }}
+          >
+            Edit Routine
+          </button>
+        </div>
       </div>
     </div>
   );

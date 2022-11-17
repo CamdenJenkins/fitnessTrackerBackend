@@ -19,6 +19,7 @@ export default function ActivitiesComponent() {
 
   return (
     <div>
+      <h1>Activities</h1>
       {activities.map((activity) => {
         console.log(activity);
         return (

@@ -3,6 +3,9 @@
   justify-content: center;
   width: 100vw;
 }
+.page {
+  height: 100vh;
+}
 /* .form {
     display: flex;
     flex-direction: column;

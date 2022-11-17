@@ -42,3 +42,14 @@ export async function fetchRoutineActivity(routineId, activityId) {
   const result = await response.json();
   return result;
 }
+
+export const deleteRoutineActivity = async (raId) => {
+  const response = await fetch(`/routes/routine_activities/${raId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const result = await response.json();
+  return result;
+};
