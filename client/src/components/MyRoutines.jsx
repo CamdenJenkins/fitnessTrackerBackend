@@ -21,15 +21,15 @@ export default function MyRoutines() {
   const [count, setCount] = useState("");
   const [duration, setDuration] = useState("");
   const navigate = useNavigate();
-  useEffect(() => {
-    const recieveRoutines = async () => {
-      const display = await fetchRoutines();
-      setRoutines(display);
-      console.log(display);
-      console.log(activities);
-    };
-    recieveRoutines();
-  }, []);
+  // useEffect(() => {
+  //   const recieveRoutines = async () => {
+  //     const display = await fetchRoutines();
+  //     setRoutines(display);
+  //     console.log(display);
+  //     console.log(activities);
+  //   };
+  //   recieveRoutines();
+  // }, []);
 
   return (
     <div>
